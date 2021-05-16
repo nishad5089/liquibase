@@ -1,0 +1,80 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'org.liquibase.gradle' version '2.0.3'
+}
+configurations {
+    liquibaseRuntime.extendsFrom runtime
+}
+group = 'com.brainstation23'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+def changeLog = "$projectDir/src/main/resources/db/changelog/master.xml"
+
+liquibase {
+    activities {
+        main {
+            changeLogFile changeLog
+            url 'jdbc:postgresql://localhost:5432/liquibase'
+            username 'postgres'
+            password '1234'
+            outputFile "$projectDir/src/main/resources/db/changelog/update.sql"
+        }
+    }
+}
+
+//
+//task qa {
+//    println "executing qa"
+//    liquibase {
+//        activities {
+//            main {
+//                changeLogFile changeLog
+//                url 'jdbc:postgresql://localhost:5432/liquibase'
+//                username 'postgres'
+//                password '1234'
+//            }
+//        }
+//    }
+//}
+//task prod {
+//    println "executing prod"
+//    liquibase {
+//        activities {
+//            main {
+//                changeLogFile changeLog
+//                url 'jdbc:postgresql://localhost:5432/liquibase'
+//                username 'postgres'
+//                password '1234'
+//            }
+//        }
+//    }
+//}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.liquibase:liquibase-core'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'org.postgresql:postgresql'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    liquibaseRuntime 'org.liquibase:liquibase-core'
+    liquibaseRuntime 'org.liquibase:liquibase-groovy-dsl:2.1.1'
+    liquibaseRuntime group: 'org.yaml', name: 'snakeyaml', version: '1.15'
+    liquibaseRuntime group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+    liquibaseRuntime 'org.liquibase.ext:liquibase-hibernate5:3.6'
+    liquibaseRuntime sourceSets.main.output
+    liquibaseRuntime 'org.postgresql:postgresql'
+    liquibaseRuntime("ch.qos.logback:logback-core:1.2.3")
+    liquibaseRuntime("ch.qos.logback:logback-classic:1.2.3")
+}
+
+test {
+    useJUnitPlatform()
+}

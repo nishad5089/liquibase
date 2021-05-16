@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="07" author="nishad">
+        <renameColumn tableName="authors" oldColumnName="author_name" newColumnName="author_name1" columnDataType="varchar(50)"/>
+    </changeSet>
+
+    <changeSet id="08" author="nishad">
+        <renameColumn tableName="authors" oldColumnName="author_name1" newColumnName="author_name2" columnDataType="varchar(50)"/>
+    </changeSet>
+
+    <changeSet id="tag-1.2" author="nishad">
+        <tagDatabase tag="1.2" />
+    </changeSet>
+
+</databaseChangeLog>

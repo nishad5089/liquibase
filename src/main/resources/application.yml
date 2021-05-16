@@ -1,0 +1,32 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: liquibase demo
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/changelog-master.yaml
+    rollback-file: classpath:db/changelog/rollback.sql
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/liquibase
+    username: postgres
+    password: 1234
+    driverClassName: org.postgresql.Driver
+  h2:
+    console:
+      enabled: true
+logging:
+  level:
+    org.springframework: WARN
+    org.springframework.security: WARN
+    org.hibernate: WARN
+    org.apache: WARN
+

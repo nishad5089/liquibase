@@ -1,0 +1,1 @@
+liquibase --changeLogFile=master.xml --outputFile=mydiff.txt --driver=org.postgresql.Driver --classpath="C:\Postgre Driver\postgresql-42.2.20.jar" --url="jdbc:postgresql://localhost:5432/test" --username=postgres --password=1234 --referenceUrl="jdbc:postgresql://localhost:5432/liquibase" --referenceUsername=postgres --referencePassword=1234 diffChangeLog

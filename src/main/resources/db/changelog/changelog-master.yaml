@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/create-books-and-author-schema-v1.0.xml
+  - include:
+      file: db/changelog/insert-data-authors-v1.0.xml
+  - include:
+      file: db/changelog/insert-data-books-v1.0.xml
+  - include:
+      file: db/changelog/create-books-and-author-schema-v1.1.xml
+  - include:
+      file: db/changelog/create-books-and-author-schema-v1.2.xml
